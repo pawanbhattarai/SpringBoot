@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Book Insert</title>
+    </head>
+<body>
+    <h1>Book Insert</h1>
+    <form method="POST" action="http://localhost:8083/book/save" enctype="multipart/form-data">
+        <div>
+            <label for="b_name">Title:</label>
+            <input type="text" id="b_name" name="b_name" required>
+        </div>
+        <div>
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author" required>
+        </div>
+        <div>
+            <label for="whoUser">User:</label>
+            <input type="text" id="whoUser" name="whoUser" required>
+        </div>
+        <div>
+        <label for="categoryIds">Category:</label>
+        <select id="categoryIds" name="categoryIds" required multiple>
+            <option value="">Select Category</option>
+        </select>        
+        </div>
+        <div>
+            <label for="coverFile">Cover Image:</label>
+            <input type="file" id="coverFile" name="coverFile" accept="image/*">
+        </div>
+        <div>
+            <label for="bookFile">Book PDF:</label>
+            <input type="file" id="bookFile" name="bookFile" accept=".pdf" required>
+        </div>
+        <button type="submit">Insert Book</button>
+    </form>
+    <script>
+        let test=fetch("http://localhost:8083/Category/All");
+        console.log(test);
+        document.addEventListener("DOMContentLoaded", function () {
+            console.log('DOM content loaded');
+            // Fetch categories from the backend
+            fetch("http://localhost:8083/Category/All")
+                .then(response => response.json())
+                .then(categories => {
+                    console.log('Categories fetched:', categories);
+                    // Get the select element
+                    const select = document.getElementById('categoryIds');
+
+                    // Populate the select with fetched categories
+                    categories.forEach(category => {
+                        const option = document.createElement('option');
+                        option.value = category.id; // Assuming your category object has an 'id' property
+                        option.textContent = category.categoryName; // Assuming your category object has a 'categoryName' property
+                        select.appendChild(option);
+                    });
+
+                    console.log('Dropdown populated');
+                })
+                .catch(error => console.error('Error fetching categories:', error));
+        });
+        // document.querySelector('form').addEventListener('submit', function (event) {
+        //     event.preventDefault();
+        //     window.location.href = 'dashbord.html';
+        // });
+    </script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category Management</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+<body>
+
+    <!-- Form to Add a New Category -->
+    <form id="addCategoryForm">
+        <!-- Add CSRF Token if using Spring Security -->
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+
+        <div>
+            <label for="categoryName">Category Name:</label>
+            <input type="text" id="categoryName" name="categoryName" required>
+        </div>
+
+        <button type="button" onclick="addCategory()">Add Category</button>
+    </form>
+
+    <!-- Display Existing Categories -->
+    <h2>Existing Categories</h2>
+    <ul id="categoryList"></ul>
+
+    <script>
+        // Function to add a new category using AJAX
+        function addCategory() {
+            var categoryName = $('#categoryName').val();
+
+            $.ajax({
+                type: 'POST',
+                url: 'http://localhost:8083/Category/add',
+                contentType: 'application/json',
+                data: JSON.stringify({ categoryName: categoryName }),
+                success: function(response) {
+                    // Refresh the category list after adding a new category
+                    fetchCategories();
+                },
+                error: function(error) {
+                    console.error('Error adding category:', error.responseText);
+                }
+            });
+        }
+
+        // Function to fetch categories using AJAX
+        function fetchCategories() {
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:8083/Category/All',
+                success: function(categories) {
+                    // Update the category list on the page
+                    displayCategories(categories);
+                },
+                error: function(error) {
+                    console.error('Error fetching categories:', error.responseText);
+                }
+            });
+        }
+
+        // Function to display categories on the page
+        function displayCategories(categories) {
+            var categoryList = $('#categoryList');
+            categoryList.empty();
+
+            $.each(categories, function(index, category) {
+                categoryList.append('<li>' + category.categoryName + '</li>');
+            });
+        }
+
+        // Initial fetch of categories when the page loads
+        fetchCategories();
+    </script>
+
+</body>
+</html>

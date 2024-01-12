@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ebook Store || Ankit Pawan</title>
+    <link rel="stylesheet" href="../css/style.css" />
+
+    <!-- font awesome kit -->
+    <script src="https://kit.fontawesome.com/e777b6462b.js" crossorigin="anonymous"></script>
+
+    <!-- poppins fonts css -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div class="site" id="page">
+        <div class="search">
+            <div class="container">
+                <form id="searchForm">
+                    <div class="search__wrap">
+                        <input type="text" id="b_name" name="b_name" required>
+                        <button type="submit">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="container">
+                <div class="main__wrapper">
+                    <div class="search__results" id="searchResults">
+                        <!-- The search results will be dynamically added here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+       document.addEventListener("DOMContentLoaded", async function () {
+    const searchForm = document.getElementById('searchForm');
+    const searchResultsContainer = document.getElementById('searchResults');
+
+    // Fetch all books when the page loads
+    try {
+        const response = await fetch('http://localhost:8083/book/');
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const allBooks = await response.json();
+
+        console.log('All Books:', allBooks);
+
+        // Populate search results with all books initially
+        allBooks.forEach(book => {
+            const bookElement = createBookElement(book);
+            searchResultsContainer.appendChild(bookElement);
+        });
+    } catch (error) {
+        console.error('Error fetching all books:', error);
+    }
+
+    searchForm.addEventListener('submit', async function (event) {
+        event.preventDefault();
+
+        const searchTerm = document.getElementById('b_name').value;
+
+        console.log('Search Term:', searchTerm);
+
+        try {
+            // Fetch search results from the backend using the Fetch API
+            const response = await fetch(`/book/search?term=${searchTerm}`);
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            const searchResults = await response.json();
+
+            console.log('Search Results:', searchResults);
+
+            // Clear existing search results
+            searchResultsContainer.innerHTML = '';
+
+            // Populate search results
+            searchResults.forEach(book => {
+                const bookElement = createBookElement(book);
+                searchResultsContainer.appendChild(bookElement);
+            });
+        } catch (error) {
+            console.error('Error fetching search results:', error);
+        }
+    });
+
+    // Your createBookElement function here...
+    function createBookElement(book) {
+    console.log('Creating Book Element:', book);
+
+    const bookElement = document.createElement('div');
+    bookElement.classList.add('books');
+
+    const imageElement = document.createElement('div');
+    imageElement.classList.add('books_img');
+    
+    const img = document.createElement('img');
+    img.src = book.cover; // Use the actual property name from your Book class
+    img.alt = book.b_name; // Use the actual property name from your Book class
+    img.style.height = "150px"; // Set the height using the style property
+
+    imageElement.appendChild(img);
+
+    const contentElement = document.createElement('div');
+    contentElement.classList.add('books__content'); 
+
+    const titleElement = document.createElement('h4');
+    titleElement.classList.add('books-title');
+    titleElement.textContent = book.b_name; // Use the actual property name from your Book class
+
+    const authorElement = document.createElement('p');
+    authorElement.classList.add('books-author');
+    authorElement.textContent = `By ${book.author}`; // Use the actual property name from your Book class
+
+    contentElement.appendChild(titleElement);
+    contentElement.appendChild(authorElement);
+    bookElement.appendChild(imageElement);
+    bookElement.appendChild(contentElement);
+
+    return bookElement;
+}
+
+        });
+    </script>
+</body>
+
+</html>

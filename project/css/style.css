@@ -1,0 +1,325 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+
+:root{
+  --primary-color: #000;
+  --green-color: #4CAF50;;
+  --black-color1: #2E2E2E;
+  --black-color2: #3E3E3E;
+  --black-color3: #696969;
+}
+*, ::after, ::before {
+  box-sizing: border-box;
+}
+html {
+  line-height: 1.15;
+  box-sizing: border-box;
+}
+a{
+    color: var(--green-color);
+}
+body {
+    font-family: "Roboto", sans-serif;
+  margin: 0;
+  background: #fff;
+}
+.btn{
+  padding: 12px 48px;
+}
+.container {
+  max-width: 420px;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+@media screen and (min-width: 992px), print {
+  .container{
+    padding-right: 25px;
+    padding-left: 25px;
+    max-width: 960px;
+  }
+}
+@media screen and (min-width: 767px), print {
+  .container{
+    max-width: 750px;
+  }
+}
+@media screen and (min-width: 1199px) {
+  .container{
+    max-width: 1170px;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .container{
+    max-width: 1320px;
+  }
+}
+
+
+
+
+
+
+
+.form-title{
+    font-weight: 800;
+    margin-top: 0;
+    margin-bottom: 24px;
+    color: #454545;
+}
+.login {
+    width: 420px;
+    padding: 8% 0 0;
+    margin: auto;
+  }
+  .login__wrapper {
+    position: relative;
+    z-index: 1;
+    background: #FFFFFF;
+    max-width: 360px;
+    margin: 0 auto 100px;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  }
+  .login__wrapper input {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+  .login__wrapper button {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #4CAF50;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    transition: all 0.3 ease;
+    cursor: pointer;
+  }
+  .login__wrapper button:hover,.login__wrapper button:active,.login__wrapper button:focus {
+    background: #43A047;
+  }
+  .BS-form-input{
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    align-items: center;
+    margin: 12px 0;
+  }
+  .loginBuyer__wrap{
+    display: flex;
+    gap: 8px;
+
+  }
+  .loginSeller__wrap{
+    display: flex;
+    gap: 8px;
+  }
+
+
+
+
+
+
+
+  
+
+  .register {
+    width: 360px;
+    padding: 8% 0 0;
+    margin: auto;
+  }
+  .register__wrapper {
+    position: relative;
+    z-index: 1;
+    background: #FFFFFF;
+    max-width: 360px;
+    margin: 0 auto 100px;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+  }
+  .register__wrapper input {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+  }
+  .form-submit input {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #4CAF50;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    transition: all 0.3 ease;
+    cursor: pointer;
+  }
+  .form-submit input:hover,.form-submit input:active,.form-submit input:focus {
+    background: #43A047;
+  }
+
+
+
+  
+
+  /* search css starts */
+  .search{
+    padding: 16px 0;
+  }
+  .search__wrap{
+    display: flex;
+    position: relative;
+  }
+   .searchTerm{
+    width: 100%;
+    padding: 14px;
+    border: 1.5px solid var(--black-color3);
+    opacity: 0.5;
+    border-radius: 8px;
+    font-size: 16px;
+letter-spacing: .4px;
+  }
+  .searchTerm:focus{
+    outline: none;
+    box-shadow: 0px 0px 10px -2px rgba(0, 0, 0, 0.5)
+  }
+  .searchButton{
+    background: transparent;
+    border: none  ;
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .searchButton i{
+    color: var(--black-color2);
+    font-size: 16px;
+    padding: 12px;
+  }
+  .searchButton i:hover{
+    cursor: pointer;
+  }
+
+  /* search csss ends */
+  /* main content starts */
+  .main-content{
+    margin-top: 48px;
+  }
+  .main__wrapper{
+    display: flex;
+    gap: 48px;
+  }
+  .aside{
+    width: 20%;
+  }
+  .search__results{
+    width: 80%;
+  }
+
+  .aside-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .aside-title h4{
+    margin: 0;
+    color: var(--black-color2);
+  }
+  .select-single{
+    margin-bottom: 12px;
+  }
+  .select-single label{
+    color: var(--black-color3);
+  }
+  .select-single label:hover,   .select-single label:active{
+    cursor: pointer;
+    color: var(--black-color1);
+  }
+  .category__wrap, .highLow{
+    margin-bottom: 48px;
+  }
+  #priceFilter {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+    border-radius: 2px;
+    background-color: transparent;
+    border: 1.5px solid #8c8c8c;
+    color: #8c8c8c;
+    letter-spacing: .6px;
+  }
+  .select-category h4{
+    color: var(--black-color2);
+  }
+  .selectAuthor h4{
+    color: var(--black-color2);
+  }
+  .author {
+    margin: 0 0 12px 12px;
+  }
+  .author a{
+  color: var(--black-color3);
+  text-decoration: none;
+  }
+  .author a:hover{
+    color: var(--black-color1)
+    }
+    .books {
+      display: flex;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .books-title {
+      font-size: 20px;
+      font-weight: 500;
+      margin: 0;
+    }
+    .books-author {
+      color: var(--black-color3);
+      font-size: 14px;
+    }
+    .books-desc{
+      color: var(--black-color3);
+    }
+    .price {
+      color: #000;
+      font-weight: 700;
+      font-size: 24px;
+      font-family: 'poppins', sans-serif;
+    }
+    .addToCart {
+      font-family: "Roboto", sans-serif;
+      text-transform: uppercase;
+      outline: 0;
+      background: #4CAF50;
+      border: 0;
+      padding: 12px 68px;
+      color: #FFFFFF;
+      font-size: 14px;
+    }
+    .addToCart:hover{
+      background: #43A047;
+      cursor: pointer;
+    }
